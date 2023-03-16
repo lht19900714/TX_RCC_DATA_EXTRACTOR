@@ -6,7 +6,7 @@ A Python application is aimed to convert mainframe EBCDIC data into Unicode ASCI
 
 The converter consists of two parts
 
-1. Engine
+1. Parser
 2. File layouts  
    File layouts are a driver to parse EBCDIC data.  
    File layouts are defined in JSON format. They are created as per manual

@@ -5,6 +5,7 @@
 '''
 
 from ebcdic_formats.ebcdic_formats import pic_generic, pic_comp3, pic_decimal
+from pathlib import Path
 
 
 def yield_blocks(file, n):
@@ -31,3 +32,26 @@ def parse_record(record, layout):
 			values[name] = pic_generic(record[start:start + size])
 
 	return values
+
+
+def save_to_csv(df, dest_folder_path, file_name, append=False):
+	'''
+	Saves the dataframe to a csv file
+	:param df: dataframe to be saved
+	:param dest_folder_path: folder path to save the csv file
+	:param file_name: name of the csv file
+	:param append: append to existing file
+	:return: None
+	'''
+	if not dest_folder_path:
+		dest_folder_path = f'../out'
+	else:
+		dest_folder_path = Path(dest_folder_path)
+
+	if not dest_folder_path.exists():
+		dest_folder_path.mkdir(parents=True)
+
+	if append:
+		df.to_csv(f'{dest_folder_path}/{file_name}', mode='a', header=False, index=False)
+	else:
+		df.to_csv(f'{dest_folder_path}/{file_name}', index=False)

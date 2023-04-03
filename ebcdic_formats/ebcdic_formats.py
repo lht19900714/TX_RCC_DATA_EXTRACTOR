@@ -45,7 +45,7 @@ def pic_comp3(packed, decimal_location=0):
 		n.append(str(lo))
 	digit, sign = divmod(packed[-1], 16)
 	n.append(str(digit))
-	if sign != 12:  # 12 is c in hex.
+	if sign == 13:  # 13 is d in hex.
 		n[0] = '-'
 
 	buf = int(''.join(str(x) for x in n))
